@@ -89,131 +89,41 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 					)
 				)
 			); 
+			// var_dump($posts_array);
 			 $content = "";
 			 ob_start(); ?>
 
 			<div class="ms_testimonial">
-			 
-<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
-	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
-					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
-						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
-					</div>
-				</div>
-			</div> 
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
-					<div class="day-description">
-						<h5>Dag 1</h5>
-						<h3>Marina Kremik</h3>
-						<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
-	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
-					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
-						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
-					</div>
-				</div>
-			</div> 
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
-						<div class="day-description">
-							<h5>Dag 1</h5>
-							<h3>Marina Kremik</h3>
-							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
+
+			<?php foreach ($posts_array as $post) { ?>
+				<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+					<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+						<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+							<div class="gdlr-core-pbf-element">
+								<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
+									<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
+										<?php  $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );  ?>	
+										<img src="<?php echo   $image['0']; ?>" alt="" width="530" height="530" title="small-day">
+									</div>
+								</div>
+							</div> 
+							<div class="gdlr-core-pbf-element">
+								<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+									<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
+										<div class="day-description">
+											<h5><?php echo $post->post_excerpt; ?></h5>
+											<h3><?php echo $post->post_title; ?></h3>
+											<p><?php echo wp_filter_nohtml_kses($post->post_content); ?></p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
-	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
-					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
-						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
-					</div>
-				</div>
-			</div> 
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
-						<div class="day-description">
-							<h5>Dag 1</h5>
-							<h3>Marina Kremik</h3>
-							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
-	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
-					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
-						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
-					</div>
-				</div>
-			</div> 
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
-						<div class="day-description">
-							<h5>Dag 1</h5>
-							<h3>Marina Kremik</h3>
-							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
-	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
-					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
-						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
-					</div>
-				</div>
-			</div> 
-			<div class="gdlr-core-pbf-element">
-				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
-						<div class="day-description">
-							<h5>Dag 1</h5>
-							<h3>Marina Kremik</h3>
-							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+			<?php } ?>
+
+ 
  
 			</div>
 			 <?php $content .= ob_get_contents();
