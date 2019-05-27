@@ -7,12 +7,12 @@
 	*/
 
 	
-add_action('plugins_loaded', 'gdlr_core_portfolio_add_pb_element');
-if( !function_exists('gdlr_core_portfolio_add_pb_element') ){
-	function gdlr_core_portfolio_add_pb_element(){
+add_action('plugins_loaded', 'gdlr_core_ms_testimonial_add_pb_element');
+if( !function_exists('gdlr_core_ms_testimonial_add_pb_element') ){
+	function gdlr_core_ms_testimonial_add_pb_element(){
 
 		if( class_exists('gdlr_core_page_builder_element') ){
-			gdlr_core_page_builder_element::add_element('testimonial', 'gdlr_core_pb_element_testimonial'); 
+			gdlr_core_page_builder_element::add_element('ms_testimonial', 'gdlr_core_pb_element_ms_testimonial'); 
 		}
 		
 	}
@@ -21,9 +21,9 @@ if( !function_exists('gdlr_core_portfolio_add_pb_element') ){
  
   
 
-if( !class_exists('gdlr_core_pb_element_testimonial') ){
+if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 
-    class gdlr_core_pb_element_testimonial{
+    class gdlr_core_pb_element_ms_testimonial{
 
         // get the element settings
 
@@ -51,259 +51,198 @@ if( !class_exists('gdlr_core_pb_element_testimonial') ){
 							'type' => 'text',
 							'default' => esc_html__('Sample Testimonial Title', 'goodlayers-core'),
 						),
-						'title-left-icon' => array(
-							'title' => esc_html__('Title Left Icon ( Only for centered title style )', 'goodlayers-core'),
-							'type' => 'icons',
-							'allow-none' => true,
-							'wrapper-class' => 'gdlr-core-fullsize',
-						),
-						'caption' => array(
-							'title' => esc_html__('Caption ( Only for center style )', 'goodlayers-core'),
-							'type' => 'text'
-						),
-						'tabs' => array(
-							'title' => esc_html__('Add Testimonial Tab', 'goodlayers-core'),
-							'type' => 'custom',
-							'item-type' => 'tabs',
-							'wrapper-class' => 'gdlr-core-fullsize',
-							'options' => array(
-								'title' => array(
-									'title' => esc_html__('Name', 'goodlayers-core'),
-									'type' => 'text'
-								),
-								'position' => array(
-									'title' => esc_html__('Position', 'goodlayers-core'),
-									'type' => 'text'
-								),
-								'content' => array(
-									'title' => esc_html__('Content', 'goodlayers-core'),
-									'type' => 'textarea'
-								),
-								'image' => array(
-									'title' => esc_html__('Author Image', 'goodlayers-core'),
-									'type' => 'upload'
-								),
-								'rating' => array(
-									'title' => esc_html__('Rating ( Fill number 1 to 10 )', 'goodlayers-core'),
-									'type' => 'text'
-								),
-							),
-							'default' => array(
-								array(
-									'title' => esc_html__('Sameple Name', 'goodlayers-core'),
-									'position' => esc_html__('Sample Position', 'goodlayers-core'),
-									'content' => esc_html__('Sample testimonial content area', 'goodlayers-core'),
-									'image' => '',
-								),
-								array(
-									'title' => esc_html__('Sameple Name', 'goodlayers-core'),
-									'position' => esc_html__('Sample Position', 'goodlayers-core'),
-									'content' => esc_html__('Sample testimonial content area', 'goodlayers-core'),
-									'image' => '',
-								),
-							)
-						),
-					),
-				),
-				'style' => array(
-					'title' => esc_html__('Style', 'goodlayers-core'),
-					'options' => array(
-						'style' => array(
-							'title' => esc_html__('Testimonial Style', 'goodlayers-core'),
-							'type' => 'radioimage',
-							'options' => array(
-								'left' => GDLR_CORE_URL . '/include/images/testimonial/left.png',
-								'left-2' => GDLR_CORE_URL . '/include/images/testimonial/left-2.jpg',
-								'center' => GDLR_CORE_URL . '/include/images/testimonial/center.png',
-								'right' => GDLR_CORE_URL . '/include/images/testimonial/right.png',
-							),
-							'default' => 'left',
-							'wrapper-class' => 'gdlr-core-fullsize'
-						),
-						'with-frame' => array(
-							'title' => esc_html__('With Frame', 'goodlayers-core'),
-							'type' => 'checkbox',
-							'default' => 'disable'
-						),
-						'column' => array(
-							'title' => esc_html__('Column Number', 'goodlayers-core'),
+						'category' => array(
+							'title' => esc_html__('Category', 'goodlayers-core-portfolio'),
 							'type' => 'combobox',
-							'options' => array( 1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6),
-							'default' => 3
-						),
-						'thumbnail-size' => array(
-							'title' => esc_html__('Thumbnail Size', 'goodlayers-core'),
-							'type' => 'combobox',
-							'options' => 'thumbnail-size',
-							'default' => 'thumbnail',
-						),
-						'enable-quote' => array(
-							'title' => esc_html__('Enable Testimonial Quote', 'goodlayers-core'),
-							'type' => 'checkbox',
-							'default' => 'enable'
-						),
-						'carousel' => array(
-							'title' => esc_html__('Enable Carousel', 'goodlayers-core'),
-							'type' => 'checkbox',
-							'default' => 'disable'
-						),
-						'carousel-autoslide' => array(
-							'title' => esc_html__('Autoslide Carousel', 'goodlayers-core'),
-							'type' => 'checkbox',
-							'default' => 'enable',
-							'condition' => array( 'carousel' => 'enable' )
-						),
-						'carousel-scrolling-item-amount' => array(
-							'title' => esc_html__('Carousel Scrolling Item Amount', 'goodlayers-core'),
-							'type' => 'text',
-							'default' => '1',
-							'condition' => array( 'carousel' => 'enable' )
-						),
-						'carousel-navigation' => array(
-							'title' => esc_html__('Carousel Navigation', 'goodlayers-core'),
-							'type' => 'combobox',
-							'options' => array(
-								'none' => esc_html__('None', 'goodlayers-core'),
-								'navigation' => esc_html__('Only Navigation', 'goodlayers-core'),
-								'bullet' => esc_html__('Only Bullet', 'goodlayers-core'),
-								'both' => esc_html__('Both Navigation and Bullet', 'goodlayers-core'),
-							),
-							'default' => 'navigation',
-							'condition' => array( 'carousel' => 'enable' )
-						),
-						'carousel-nav-style' => array(
-							'title' => esc_html__('Carousel Nav Style', 'goodlayers-core'),
-							'type' => 'combobox',
-							'options' => array(
-								'default' => esc_html__('Default', 'goodlayers-core'),
-								'gdlr-core-plain-style gdlr-core-small' => esc_html__('Small Plain Style', 'goodlayers-core'),
-								'gdlr-core-plain-style' => esc_html__('Plain Style', 'goodlayers-core'),
-								'gdlr-core-plain-circle-style' => esc_html__('Plain Circle Style', 'goodlayers-core'),
-								'gdlr-core-round-style' => esc_html__('Large Round Style', 'goodlayers-core'),
-								'gdlr-core-rectangle-style' => esc_html__('Rectangle Style', 'goodlayers-core'),
-								'gdlr-core-rectangle-style gdlr-core-large' => esc_html__('Large Rectangle Style', 'goodlayers-core'),
-							),
-							'condition' => array( 'carousel' => 'enable', 'carousel-navigation' => array('navigation','both') )
-						),
-						'carousel-bullet-style' => array(
-							'title' => esc_html__('Carousel Bullet Style', 'goodlayers-core'),
-							'type' => 'combobox',
-							'options' => array(
-								'default' => esc_html__('Default', 'goodlayers-core'),
-								'cylinder' => esc_html__('Cylinder', 'goodlayers-core'),
-							),
-							'condition' => array( 'carousel' => 'enable', 'carousel-navigation' => array('bullet','both') )
-						)
-					)
-				),
-				'typography' => array(
-					'title' => esc_html__('Typograhy', 'goodlayers-core'),
-					'options' => array(
-						'title-size' => array(
-							'title' => esc_html__('Title Size', 'goodlayers-core'),
-							'type' => 'fontslider',
-							'default' => '28px'
-						),
-						'title-text-transform' => array(
-							'title' => esc_html__('Title Text Transform', 'goodlayers-core'),
-							'type' => 'combobox',
-							'data-type' => 'text',
-							'options' => array(
-								'none' => esc_html__('None', 'goodlayers-core'),
-								'uppercase' => esc_html__('Uppercase', 'goodlayers-core'),
-								'lowercase' => esc_html__('Lowercase', 'goodlayers-core'),
-								'capitalize' => esc_html__('Capitalize', 'goodlayers-core'),
-							),
-							'default' => 'uppercase'
-						),
-						'title-font-weight' => array(
-							'title' => esc_html__('Title Font Weight', 'goodlayers-core'),
-							'type' => 'text',
-						),
-						'title-letter-spacing' => array(
-							'title' => esc_html__('Title Letter Spacing', 'goodlayers-core'),
-							'type' => 'text',
-							'data-input-type' => 'pixel',
-						),
-						'name-size' => array(
-							'title' => esc_html__('Name Size', 'goodlayers-core'),
-							'type' => 'text',
-							'data-input-type' => 'pixel',
-							'default' => ''
-						),
-						'caption-size' => array(
-							'title' => esc_html__('Position Size', 'goodlayers-core'),
-							'type' => 'fontslider',
-							'default' => '16px'
-						),
-						'content-size' => array(
-							'title' => esc_html__('Content Size', 'goodlayers-core'),
-							'type' => 'fontslider',
-							'default' => '15px'
-						)
-					)
-				),				
-				'color' => array(
-					'title' => esc_html__('Color', 'goodlayers-core'),
-					'options' => array(
-						'title-color' => array(
-							'title' => esc_html__('Title Color', 'goodlayers-core'),
-							'type' => 'colorpicker'
-						),
-						'caption-color' => array(
-							'title' => esc_html__('Caption Color', 'goodlayers-core'),
-							'type' => 'colorpicker'
-						),
-						'quote-color' => array(
-							'title' => esc_html__('Quote Color', 'goodlayers-core'),
-							'type' => 'colorpicker'
-						),
-						'content-color' => array(
-							'title' => esc_html__('Content Color', 'goodlayers-core'),
-							'type' => 'colorpicker'
-						),
-						'name-color' => array(
-							'title' => esc_html__('Name Color', 'goodlayers-core'),
-							'type' => 'colorpicker'
-						),
-						'position-color' => array(
-							'title' => esc_html__('Position Color', 'goodlayers-core'),
-							'type' => 'colorpicker'
-						)
-					)
-				),
-				'spacing' => array(
-					'title' => esc_html__('Spacing', 'goodlayers-core'),
-					'options' => array(
-						'caption-spaces' => array(
-							'title' => esc_html__('Space Between Caption ( And Title )', 'goodlayers-core'),
-							'type' => 'text',
-							'data-input-type' => 'pixel',
-							'default' => ''
-						),
-						'title-wrap-bottom-margin' => array(
-							'title' => esc_html__('Title Wrap Bottom Margin', 'goodlayers-core'),
-							'type' => 'text',
-							'data-input-type' => 'pixel',
-						),
-						'content-bottom-padding' => array(
-							'title' => esc_html__('Content Bottom Margin', 'goodlayers-core'),
-							'type' => 'text',
-							'data-input-type' => 'pixel',
-							'default' => '0px'
-						),
-						'padding-bottom' => array(
-							'title' => esc_html__('Padding Bottom ( Item )', 'goodlayers-core'),
-							'type' => 'text',
-							'data-input-type' => 'pixel',
-							'default' => $gdlr_core_item_pdb
-						)
+							'options' => gdlr_core_get_term_list('ms_testimonial_category'),
+							'description' => esc_html__('You can use Ctrl/Command button to select multiple items or remove the selected item. Leave this field blank to select all items in the list.', 'goodlayers-core-portfolio'),
+						) 
 					)
 				)
 			);
+		} 
+		static function get_preview( $settings = array() ){
+		 	$content = "";
+			$id = mt_rand(0, 9999); 
+			ob_start();
+			?><script id="gdlr-core-preview-title-<?php echo esc_attr($id); ?>" >
+				jQuery(document).ready(function(){
+					jQuery('[data-type="ms_testimonial"] .gdlr-core-page-builder-item-container-preview').html("<p style='text-align:center;'>Moresailing Custom Testimonial </p>");
+				});
+			</script><?php	
+			$content .= ob_get_contents();
+			ob_end_clean(); 
+			return $content;
 		}
 
+		static function get_content( $settings = array(), $preview = false ){
+			global $gdlr_core_item_pdb;  
+			  $posts_array = get_posts(
+				array(
+					'post_type' => 'ms_testimonial',
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'ms_testimonial_category',
+							'field' => 'term_name',
+							'terms' => $settings['category']
+						)
+					)
+				)
+			); 
+			 $content = "";
+			 ob_start(); ?>
+
+			<div class="ms_testimonial">
+			 
+<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
+					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
+						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
+					</div>
+				</div>
+			</div> 
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
+					<div class="day-description">
+						<h5>Dag 1</h5>
+						<h3>Marina Kremik</h3>
+						<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
+					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
+						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
+					</div>
+				</div>
+			</div> 
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
+						<div class="day-description">
+							<h5>Dag 1</h5>
+							<h3>Marina Kremik</h3>
+							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
+					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
+						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
+					</div>
+				</div>
+			</div> 
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
+						<div class="day-description">
+							<h5>Dag 1</h5>
+							<h3>Marina Kremik</h3>
+							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
+					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
+						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
+					</div>
+				</div>
+			</div> 
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
+						<div class="day-description">
+							<h5>Dag 1</h5>
+							<h3>Marina Kremik</h3>
+							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+	<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+		<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align">
+					<div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;">
+						<img src="https://www.moresailing.se/demo/wp-content/uploads/2019/05/small-day.jpg" alt="" width="530" height="530" title="small-day">
+					</div>
+				</div>
+			</div> 
+			<div class="gdlr-core-pbf-element">
+				<div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+					<div class="gdlr-core-text-box-item-content" style="text-transform: none ;">
+						<div class="day-description">
+							<h5>Dag 1</h5>
+							<h3>Marina Kremik</h3>
+							<p>Ankomsttiderna till Kroatien varierar mellan olika avreseorter och flygbolag. Vissa landar på förmiddagen och andra på eftermiddagen eller kvällen. Landar man på morgonen kan det bli en stunds väntan innan att båten är iordning så att man kan gå ombord, då rekommenderar vi att ni besöker vår grannby Primosten under dagen. Landar man på kvällen körs man direkt till orten dit båten har flyttats och inte till Marina Kremik.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+			</div>
+			 <?php $content .= ob_get_contents();
+			ob_end_clean();
+			return $content;
+		}
 
     }
-
+} 
+add_action( 'wp_footer', 'ms_testimonial_footer_scripts' );
+function ms_testimonial_footer_scripts(){
+  ?>
+  <script>
+	jQuery('.ms_testimonial').slick({
+		infinite: true,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		responsive: [
+			{
+			breakpoint: 480,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1
+			}
+			} 
+		]
+	});
+   </script>
+  <?php
 }
+
+ 
