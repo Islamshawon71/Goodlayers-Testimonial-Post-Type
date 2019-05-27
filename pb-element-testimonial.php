@@ -79,6 +79,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 			global $gdlr_core_item_pdb;  
 			  $posts_array = get_posts(
 				array(
+					'numberposts'       => -1,
 					'post_type' => 'ms_testimonial',
 					'tax_query' => array(
 						array(
@@ -122,7 +123,6 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 					</div>
 				</div>
 			<?php } ?>
-
  
  
 			</div>
