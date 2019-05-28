@@ -95,7 +95,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 				array(
 					'numberposts'       => -1,
 					'post_type' => 'ms_testimonial',
-					'orderby'          => 'date',
+					'orderby'          => 'id',
 					'order'            => $settings['order'],
 					'tax_query' => array(
 						array(
