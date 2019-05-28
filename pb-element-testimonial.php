@@ -99,7 +99,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 					'tax_query' => array(
 						array(
 							'taxonomy' => 'ms_testimonial_category',
-							'field' => 'term_name',
+							'field' => 'slug',
 							'terms' => $settings['category']
 						)
 					)
