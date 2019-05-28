@@ -33,7 +33,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 
                 'icon' => 'fa-quote-right',
 
-                'title' => esc_html__('MS Testimonial', 'goodlayers-core')
+                'title' => esc_html__('MS Testimonial', 'goodlayer-ms-testimonial')
 
             );
 
@@ -44,19 +44,27 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 			
 			return array(
 				'general' => array(
-					'title' => esc_html__('General', 'goodlayers-core'),
+					'title' => esc_html__('General', 'goodlayer-ms-testimonial'),
 					'options' => array(
 						'title' => array(
-							'title' => esc_html__('Title', 'goodlayers-core'),
+							'title' => esc_html__('Title', 'goodlayer-ms-testimonial'),
 							'type' => 'text',
-							'default' => esc_html__('Sample Testimonial Title', 'goodlayers-core'),
+							'default' => esc_html__('Sample Testimonial Title', 'goodlayer-ms-testimonial'),
 						),
 						'category' => array(
-							'title' => esc_html__('Category', 'goodlayers-core-portfolio'),
+							'title' => esc_html__('Category', 'goodlayer-ms-testimonial'),
 							'type' => 'combobox',
 							'options' => gdlr_core_get_term_list('ms_testimonial_category'),
-							'description' => esc_html__('You can use Ctrl/Command button to select multiple items or remove the selected item. Leave this field blank to select all items in the list.', 'goodlayers-core-portfolio'),
-						) 
+							'description' => esc_html__('You can use Ctrl/Command button to select multiple items or remove the selected item. Leave this field blank to select all items in the list.', 'goodlayer-ms-testimonial'),
+						),
+						'order' => array(
+							'title' => esc_html__('Order', 'goodlayer-ms-testimonial'),
+							'type' => 'combobox',
+							'options' => array(
+								'desc'=>esc_html__('Descending Order', 'goodlayer-ms-testimonial'), 
+								'asc'=> esc_html__('Ascending Order', 'goodlayer-ms-testimonial'), 
+							)
+						), 
 					)
 				)
 			);
@@ -76,11 +84,18 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 		}
 
 		static function get_content( $settings = array(), $preview = false ){
-			global $gdlr_core_item_pdb;  
+			global $gdlr_core_item_pdb; 
+			var_dump($settings); 
+			
+			if(isset($settings['order'])){
+				$settings['order'] = 'asc';
+			}
+
 			  $posts_array = get_posts(
 				array(
 					'numberposts'       => -1,
 					'post_type' => 'ms_testimonial',
+					'order'            => $settings['order'],
 					'tax_query' => array(
 						array(
 							'taxonomy' => 'ms_testimonial_category',
