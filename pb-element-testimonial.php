@@ -85,9 +85,9 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 
 		static function get_content( $settings = array(), $preview = false ){
 			global $gdlr_core_item_pdb; 
-			var_dump($settings); 
+			// var_dump($settings); 
 			
-			if(isset($settings['order'])){
+			if(!isset($settings['order'])){
 				$settings['order'] = 'asc';
 			}
 
@@ -95,6 +95,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 				array(
 					'numberposts'       => -1,
 					'post_type' => 'ms_testimonial',
+					'orderby'          => 'date',
 					'order'            => $settings['order'],
 					'tax_query' => array(
 						array(
@@ -105,6 +106,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 					)
 				)
 			); 
+			// echo count($posts_array);
 			// var_dump($posts_array);
 			 $content = "";
 			 ob_start(); ?>
@@ -112,7 +114,7 @@ if( !class_exists('gdlr_core_pb_element_ms_testimonial') ){
 			<div class="ms_testimonial">
 
 			<?php foreach ($posts_array as $post) { ?>
-				<div class="gdlr-core-pbf-column gdlr-core-column-15 ">
+				<div class="gdlr-core-pbf-column gdlr-core-column-15 <?php echo $post->ID ; ?>">
 					<div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
 						<div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
 							<div class="gdlr-core-pbf-element">
